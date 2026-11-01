@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monarch | Members</title>
+
+    <style>
+        /* Universal setup */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px 0;
+        }
+
+        /* Main timeline container wrapper */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* The vertical backbone line in the middle */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        /* Individual event containers (each takes half space) */
+        .container {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+
+        /* Small circular timeline indicators on the center line */
+        .container::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            border: 4px solid #e74c3c;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Push left containers to the left half */
+        .left {
+            left: 0;
+        }
+
+        /* Push right containers to the right half */
+        .right {
+            left: 50%;
+        }
+
+        /* Adjust the dot position for right-aligned items */
+        .right::after {
+            left: -10px;
+        }
+
+        /* Actual card styling holding the content */
+        .content {
+            padding: 20px 30px;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    
+        .content h2 {
+            margin-top: 0;
+            color: #e74c3c;
+            font-size: 1.2rem;
+        }
+    
+        .content p {
+            margin-bottom: 0;
+            color: #555;
+            line-height: 1.5;
+            }
+
+            /* Responsive adjustments for screens under 600px wide */
+            @media screen and (max-width: 600px) {
+            /* Shift the backbone line to the left side */
+            .timeline::after {
+                left: 31px;
+            }
+
+            /* Force all items to take full width */
+            .container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            /* Ensure all items behave as if they are on the right side */
+            .right {
+                left: 0%;
+            }
+      
+            /* Shift all circular dots to align with the new left backbone line position */
+            .container::after {
+                left: 21px;
+            }
+        }
+    </style>
+</head>
+
+<body style="margin:0; min-height:100vh; font-family:sans-serif; background-image:url('images.jpg'); background-size:cover; background-position:center; background-attachment:fixed;">
+
+<nav id="sidebar" style="position:fixed; top:0; left:0; width:240px; height:100vh; box-sizing:border-box; background:rgba(255,255,255,0.13); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); z-index:1000; display:flex; flex-direction:column; align-items:center; padding:25px 12px; box-shadow:4px 0 30px rgba(0,0,0,0.05); transition:width 0.3s ease; overflow-x:hidden;">
+
+    <button id="toggleButton" onclick="toggleSidebar()" aria-label="Collapse sidebar" style="align-self:flex-end; border:none; background:rgba(9,32,75,0.08); color:rgba(9,32,75,0.99); font-size:20px; cursor:pointer; border-radius:8px; padding:7px 12px; margin-bottom:25px;">☰</button>
+
+    <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:40px; width:100%;">
+        <img src="logo.webp" alt="Monarch Logo" style="width:42px; height:42px; border-radius:50%; object-fit:cover; flex-shrink:0;">
+        <span class="sidebar-label" style="font-size:20px; font-weight:bold; letter-spacing:2px; color:rgba(9,32,75,0.99); white-space:nowrap;">MONARCH</span>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:8px; width:100%;">
+
+        <a href="home.html" title="Home" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; box-sizing:border-box; transition:background 0.3s;" onmouseover="this.style.background='rgba(9,32,75,0.08)'" onmouseout="this.style.background='none'">
+            <span style="font-size:21px; min-width:25px; text-align:center;">⌂</span>
+            <span class="sidebar-label">Home</span>
+        </a>
+
+        <a href="about.html" title="About" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; box-sizing:border-box; transition:background 0.3s;" onmouseover="this.style.background='rgba(9,32,75,0.08)'" onmouseout="this.style.background='none'">
+            <span style="font-size:21px; min-width:25px; text-align:center;">ⓘ</span>
+            <span class="sidebar-label">About</span>
+        </a>
+
+        <a href="members.html" title="Members" aria-current="page" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; box-sizing:border-box; transition:background 0.3s;" onmouseover="this.style.background='rgba(9,32,75,0.08)'" onmouseout="this.style.background='none'">
+            <span style="font-size:21px; min-width:25px; text-align:center;">♟</span>
+            <span class="sidebar-label">Members</span>
+        </a>
+
+        <a href="achievements.html" title="Achievements" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; box-sizing:border-box; transition:background 0.3s;" onmouseover="this.style.background='rgba(9,32,75,0.08)'" onmouseout="this.style.background='none'">
+            <span style="font-size:21px; min-width:25px; text-align:center;">🏆</span>
+            <span class="sidebar-label">Achievements</span>
+        </a>
+
+        <a href="timeline.html" title="Timeline" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; background:rgba(9,32,75,0.13); border-left:4px solid rgba(9,32,75,0.85); box-sizing:border-box;">
+            <span style="font-size:21px; min-width:25px; text-align:center;">✉</span>
+            <span class="sidebar-label">Timeline</span>
+        </a>
+
+        <a href="JoinUs.html" title="Join Us" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; box-sizing:border-box; transition:background 0.3s;" onmouseover="this.style.background='rgba(9,32,75,0.08)'" onmouseout="this.style.background='none'">
+            <span style="font-size:21px; min-width:25px; text-align:center;">✉</span>
+            <span class="sidebar-label">Join Us</span>
+        </a>
+
+    </div>
+</nav>
+
+<main id="mainContent" style="margin-left:240px; min-height:100vh; box-sizing:border-box; padding:50px 35px; transition:margin-left 0.3s ease;">
+
+    <h1 style="text-align:center; color:white; margin:0 0 35px 0; text-shadow:0 2px 8px rgba(0,0,0,0.3);">
+        Timeline
+    </h1>
+
+    <div class="timeline">
+    
+        <!-- Event 1 (Left side) -->
+        <div class="container left">
+            <div class="content">
+                <h2>12th October, 2026 - Establishment of Monarch</h2>
+            </div>
+        </div>
+
+        <!-- Event 2 (Right side) -->
+        <div class="container right">
+            <div class="content">
+                <h2>31st October, 2026 - Official Start of Monarch</h2>
+            </div>
+        </div>
+
+    </div>
+
+
+    <p style="text-align:center; color:#98FB98; margin-top:40px; font-weight:bold;">
+        Long live the Ñ
+    </p>
+
+</main>
+
+<script>
+let sidebarCollapsed = false;
+
+function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const main = document.getElementById("mainContent");
+    const labels = document.querySelectorAll(".sidebar-label");
+    const links = document.querySelectorAll("#sidebar a");
+    const button = document.getElementById("toggleButton");
+
+    sidebarCollapsed = !sidebarCollapsed;
+
+    if (sidebarCollapsed) {
+        sidebar.style.width = "80px";
+        sidebar.style.padding = "25px 10px";
+        main.style.marginLeft = "80px";
+        labels.forEach(label => label.style.display = "none");
+
+        links.forEach(link => {
+            link.style.justifyContent = "center";
+            link.style.padding = "14px 5px";
+        });
+
+        button.style.alignSelf = "center";
+        button.setAttribute("aria-label", "Expand sidebar");
+    } else {
+        sidebar.style.width = "240px";
+        sidebar.style.padding = "25px 12px";
+        main.style.marginLeft = "240px";
+        labels.forEach(label => label.style.display = "inline");
+
+        links.forEach(link => {
+            link.style.justifyContent = "flex-start";
+            link.style.padding = "14px 15px";
+        });
+
+        button.style.alignSelf = "flex-end";
+        button.setAttribute("aria-label", "Collapse sidebar");
+    }
+}
+</script>
+
+</body>
+</html>
