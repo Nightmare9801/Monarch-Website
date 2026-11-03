@@ -1,0 +1,115 @@
+/* ==========================================================================
+   Monarch — shared presentation layer
+   --------------------------------------------------------------------------
+   The base layout lives in each page's markup (unchanged). This file holds
+   only additive layers: keyboard focus visibility, sidebar hover (parity
+   with the removed inline JS handlers), reduced-motion support, and the
+   small-screen behavior. All colors are the site's existing palette values.
+   ========================================================================== */
+
+/* --- 1. Keyboard focus visibility (was missing entirely) ------------------ */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+/* --- 2. Sidebar link hover ------------------------------------------------ */
+/* Replaces the previous per-element onmouseover/onmouseout attributes with
+   the identical visual value. Active-page links keep their existing
+   background and were never hovered before — kept that way. */
+#sidebar a:not([aria-current="page"]):hover {
+    background: rgba(9, 32, 75, 0.08);
+}
+
+/* --- 3. Respect reduced-motion users -------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    #sidebar,
+    #mainContent,
+    #sidebar a {
+        transition: none !important;
+    }
+}
+
+/* --- 4. Floating menu button (mobile only) -------------------------------- */
+/* Lives outside the nav on purpose: the nav's backdrop-filter creates a
+   containing block, which would pin any fixed-position descendant to the
+   (off-screen) sidebar instead of the viewport. */
+#mobileToggle {
+    display: none;
+}
+
+/* --- 5. Small screens: fixed sidebar becomes an off-canvas drawer --------- */
+/* The 768px breakpoint must stay byte-identical with the one in sidebar.js. */
+@media (max-width: 768px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    #mainContent {
+        margin-left: 0 !important;
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+    }
+
+    #sidebar {
+        width: 240px !important;
+        padding: 25px 12px !important;
+        transform: translateX(-105%);
+        transition: transform 0.3s ease !important;
+        box-shadow: 6px 0 30px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    #sidebar.open {
+        transform: translateX(0);
+    }
+
+    /* Always show the expanded look inside the drawer */
+    #sidebar .sidebar-label {
+        display: inline !important;
+    }
+    #sidebar a {
+        justify-content: flex-start !important;
+        padding: 14px 15px !important;
+        border-left-width: 0 !important;
+    }
+    #sidebar a[aria-current="page"] {
+        border-left-width: 4px !important;
+    }
+
+    /* Floating menu button — same navy as the site's buttons */
+    #mobileToggle {
+        display: block !important;
+        position: fixed;
+        top: 14px;
+        left: 14px;
+        z-index: 1101;
+        border: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: rgba(9, 32, 75, 0.92);
+        color: rgba(255, 255, 255, 0.92);
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Scrim behind the open drawer: click-through closes it.
+       Below the sidebar (z-index 1000), above page content. */
+    body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        opacity: 0;
+        pointer-events: none;
+        z-index: 900;
+        transition: opacity 0.3s ease;
+    }
+    body.drawer-open::after {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}

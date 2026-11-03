@@ -5,6 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/webp" href="logo.webp">
+    <link rel="stylesheet" href="styles.css">
     <title>Monarch | Home</title>
 </head>
 
@@ -21,7 +23,11 @@
 ">
 
     <!-- SIDEBAR -->
-    <nav id="sidebar" style="
+    <!-- Mobile menu button (fixed to the viewport; outside the nav because
+     backdrop-filter on the nav would pin any fixed descendant to it) -->
+<button id="mobileToggle" onclick="toggleSidebar()" aria-label="Open menu" aria-expanded="false">&#9744;</button>
+
+<nav id="sidebar" style="
         position: fixed;
         top: 0;
         left: 0;
@@ -143,8 +149,6 @@
                     box-sizing: border-box;
                     transition: background 0.3s;
                 "
-                onmouseover="this.style.background='rgba(9, 32, 75, 0.08)'"
-                onmouseout="this.style.background='none'"
             >
                 <span style="font-size: 21px; min-width: 25px; text-align: center;">ⓘ</span>
                 <span class="sidebar-label">About</span>
@@ -166,8 +170,6 @@
                     box-sizing: border-box;
                     transition: background 0.3s;
                 "
-                onmouseover="this.style.background='rgba(9, 32, 75, 0.08)'"
-                onmouseout="this.style.background='none'"
             >
                 <span style="font-size: 21px; min-width: 25px; text-align: center;">♟</span>
                 <span class="sidebar-label">Members</span>
@@ -189,14 +191,12 @@
                     box-sizing: border-box;
                     transition: background 0.3s;
                 "
-                onmouseover="this.style.background='rgba(9, 32, 75, 0.08)'"
-                onmouseout="this.style.background='none'"
             >
                 <span style="font-size: 21px; min-width: 25px; text-align: center;">🏆</span>
                 <span class="sidebar-label">Achievements</span>
             </a>
 
-            <a href="timeline.html" title="Timeline" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; box-sizing:border-box; transition:background 0.3s;" onmouseover="this.style.background='rgba(9,32,75,0.08)'" onmouseout="this.style.background='none'">
+            <a href="timeline.html" title="Timeline" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; box-sizing:border-box; transition:background 0.3s;">
                 <span style="font-size:21px; min-width:25px; text-align:center;">✉</span>
                 <span class="sidebar-label">Timeline</span>
             </a>
@@ -217,8 +217,6 @@
                     box-sizing: border-box;
                     transition: background 0.3s;
                 "
-                onmouseover="this.style.background='rgba(9, 32, 75, 0.08)'"
-                onmouseout="this.style.background='none'"
             >
                 <span style="font-size: 21px; min-width: 25px; text-align: center;">✉</span>
                 <span class="sidebar-label">Join Us</span>
@@ -286,67 +284,7 @@
 
 
     <!-- SIDEBAR COLLAPSE SCRIPT -->
-    <script>
-
-        let sidebarCollapsed = false;
-
-        function toggleSidebar() {
-
-            const sidebar = document.getElementById("sidebar");
-            const main = document.getElementById("mainContent");
-            const labels = document.querySelectorAll(".sidebar-label");
-            const links = document.querySelectorAll("#sidebar a");
-            const button = document.getElementById("toggleButton");
-
-            sidebarCollapsed = !sidebarCollapsed;
-
-            if (sidebarCollapsed) {
-
-                sidebar.style.width = "80px";
-                sidebar.style.padding = "25px 10px";
-
-                main.style.marginLeft = "80px";
-
-                labels.forEach(label => {
-                    label.style.display = "none";
-                });
-
-                links.forEach(link => {
-                    link.style.justifyContent = "center";
-                    link.style.padding = "14px 5px";
-                    link.style.borderLeftWidth =
-                        link.hasAttribute("aria-current") ? "4px" : "0px";
-                });
-
-                button.style.alignSelf = "center";
-                button.setAttribute("aria-label", "Expand sidebar");
-
-            } else {
-
-                sidebar.style.width = "240px";
-                sidebar.style.padding = "25px 12px";
-
-                main.style.marginLeft = "240px";
-
-                labels.forEach(label => {
-                    label.style.display = "inline";
-                });
-
-                links.forEach(link => {
-                    link.style.justifyContent = "flex-start";
-                    link.style.padding = "14px 15px";
-                    link.style.borderLeftWidth =
-                        link.hasAttribute("aria-current") ? "4px" : "0px";
-                });
-
-                button.style.alignSelf = "flex-end";
-                button.setAttribute("aria-label", "Collapse sidebar");
-
-            }
-
-        }
-
-    </script>
+    <script src="sidebar.js"></script>
 
 </body>
 </html>

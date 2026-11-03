@@ -4,10 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/webp" href="logo.webp">
+    <link rel="stylesheet" href="styles.css">
     <title>Monarch | Members</title>
 </head>
 
 <body style="margin:0; min-height:100vh; font-family:sans-serif; background-image:url('images.jpg'); background-size:cover; background-position:center; background-attachment:fixed;">
+
+<!-- Mobile menu button (fixed to the viewport; outside the nav because
+     backdrop-filter on the nav would pin any fixed descendant to it) -->
+<button id="mobileToggle" onclick="toggleSidebar()" aria-label="Open menu" aria-expanded="false">&#9744;</button>
 
 <nav id="sidebar" style="position:fixed; top:0; left:0; width:240px; height:100vh; box-sizing:border-box; background:rgba(255,255,255,0.13); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); z-index:1000; display:flex; flex-direction:column; align-items:center; padding:25px 12px; box-shadow:4px 0 30px rgba(0,0,0,0.05); transition:width 0.3s ease; overflow-x:hidden;">
 
@@ -20,12 +26,12 @@
 
     <div style="display:flex; flex-direction:column; gap:8px; width:100%;">
 
-        <a href="home.html" title="Home" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; box-sizing:border-box; transition:background 0.3s;" onmouseover="this.style.background='rgba(9,32,75,0.08)'" onmouseout="this.style.background='none'">
+        <a href="home.html" title="Home" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; box-sizing:border-box; transition:background 0.3s;">
             <span style="font-size:21px; min-width:25px; text-align:center;">⌂</span>
             <span class="sidebar-label">Home</span>
         </a>
 
-        <a href="about.html" title="About" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; box-sizing:border-box; transition:background 0.3s;" onmouseover="this.style.background='rgba(9,32,75,0.08)'" onmouseout="this.style.background='none'">
+        <a href="about.html" title="About" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; box-sizing:border-box; transition:background 0.3s;">
             <span style="font-size:21px; min-width:25px; text-align:center;">ⓘ</span>
             <span class="sidebar-label">About</span>
         </a>
@@ -35,17 +41,17 @@
             <span class="sidebar-label">Members</span>
         </a>
 
-        <a href="achievements.html" title="Achievements" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; box-sizing:border-box; transition:background 0.3s;" onmouseover="this.style.background='rgba(9,32,75,0.08)'" onmouseout="this.style.background='none'">
+        <a href="achievements.html" title="Achievements" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; box-sizing:border-box; transition:background 0.3s;">
             <span style="font-size:21px; min-width:25px; text-align:center;">🏆</span>
             <span class="sidebar-label">Achievements</span>
         </a>
 
-        <a href="timeline.html" title="Join Us" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; box-sizing:border-box; transition:background 0.3s;" onmouseover="this.style.background='rgba(9,32,75,0.08)'" onmouseout="this.style.background='none'">
+        <a href="timeline.html" title="Timeline" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; box-sizing:border-box; transition:background 0.3s;">
             <span style="font-size:21px; min-width:25px; text-align:center;">✉</span>
             <span class="sidebar-label">Timeline</span>
         </a>
 
-        <a href="JoinUs.html" title="Join Us" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; box-sizing:border-box; transition:background 0.3s;" onmouseover="this.style.background='rgba(9,32,75,0.08)'" onmouseout="this.style.background='none'">
+        <a href="JoinUs.html" title="Join Us" style="text-decoration:none; color:rgba(9,32,75,0.99); font-weight:bold; padding:14px 15px; border-radius:8px; display:flex; align-items:center; gap:15px; box-sizing:border-box; transition:background 0.3s;">
             <span style="font-size:21px; min-width:25px; text-align:center;">✉</span>
             <span class="sidebar-label">Join Us</span>
         </a>
@@ -62,7 +68,7 @@
     <div style="display:flex; flex-wrap:wrap; justify-content:center; align-items:stretch; gap:25px; max-width:1100px; margin:auto;">
 
         <!-- Crownless -->
-        <div style="width:260px; box-sizing:border-box; padding:25px; border-radius:16px; background:rgba(255,255,255,0.15); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.3); box-shadow:0 8px 32px rgba(0,0,0,0.2); text-align:center; color:black;">
+        <div style="width:260px; max-width:100%; box-sizing:border-box; padding:25px; border-radius:16px; background:rgba(255,255,255,0.15); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.3); box-shadow:0 8px 32px rgba(0,0,0,0.2); text-align:center; color:black;">
             <div style="width:75px; height:75px; margin:0 auto 15px; border-radius:50%; background:rgba(9,32,75,0.15); display:flex; align-items:center; justify-content:center; font-size:25px; font-weight:bold; color:rgba(9,32,75,0.99);">M1</div>
             <h2 style="margin:8px 0;">Crownless</h2>
             <h4 style="margin:8px 0; color:rgba(9,32,75,0.99);">Ghost</h4>
@@ -71,7 +77,7 @@
         </div>
 
         <!-- Thorrija -->
-        <div style="width:260px; box-sizing:border-box; padding:25px; border-radius:16px; background:rgba(255,255,255,0.15); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.3); box-shadow:0 8px 32px rgba(0,0,0,0.2); text-align:center; color:black;">
+        <div style="width:260px; max-width:100%; box-sizing:border-box; padding:25px; border-radius:16px; background:rgba(255,255,255,0.15); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.3); box-shadow:0 8px 32px rgba(0,0,0,0.2); text-align:center; color:black;">
             <div style="width:75px; height:75px; margin:0 auto 15px; border-radius:50%; background:rgba(9,32,75,0.15); display:flex; align-items:center; justify-content:center; font-size:25px; font-weight:bold; color:rgba(9,32,75,0.99);">M2</div>
             <h2 style="margin:8px 0;">Thorrija</h2>
             <h4 style="margin:8px 0; color:rgba(9,32,75,0.99);">Bread</h4>
@@ -80,7 +86,7 @@
         </div>
 
         <!-- Eze -->
-        <div style="width:260px; box-sizing:border-box; padding:25px; border-radius:16px; background:rgba(255,255,255,0.15); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.3); box-shadow:0 8px 32px rgba(0,0,0,0.2); text-align:center; color:black;">
+        <div style="width:260px; max-width:100%; box-sizing:border-box; padding:25px; border-radius:16px; background:rgba(255,255,255,0.15); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.3); box-shadow:0 8px 32px rgba(0,0,0,0.2); text-align:center; color:black;">
             <div style="width:75px; height:75px; margin:0 auto 15px; border-radius:50%; background:rgba(9,32,75,0.15); display:flex; align-items:center; justify-content:center; font-size:25px; font-weight:bold; color:rgba(9,32,75,0.99);">M3</div>
             <h2 style="margin:8px 0;">Eze</h2>
             <h4 style="margin:8px 0; color:rgba(9,32,75,0.99);">Troll</h4>
@@ -89,7 +95,7 @@
         </div>
 
         <!-- wKhan -->
-        <div style="width:260px; box-sizing:border-box; padding:25px; border-radius:16px; background:rgba(255,255,255,0.15); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.3); box-shadow:0 8px 32px rgba(0,0,0,0.2); text-align:center; color:black;">
+        <div style="width:260px; max-width:100%; box-sizing:border-box; padding:25px; border-radius:16px; background:rgba(255,255,255,0.15); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.3); box-shadow:0 8px 32px rgba(0,0,0,0.2); text-align:center; color:black;">
             <div style="width:75px; height:75px; margin:0 auto 15px; border-radius:50%; background:rgba(9,32,75,0.15); display:flex; align-items:center; justify-content:center; font-size:25px; font-weight:bold; color:rgba(9,32,75,0.99);">M4</div>
             <h2 style="margin:8px 0;">wKhan</h2>
             <h4 style="margin:8px 0; color:rgba(9,32,75,0.99);">Pinged</h4>
@@ -105,47 +111,7 @@
 
 </main>
 
-<script>
-let sidebarCollapsed = false;
-
-function toggleSidebar() {
-    const sidebar = document.getElementById("sidebar");
-    const main = document.getElementById("mainContent");
-    const labels = document.querySelectorAll(".sidebar-label");
-    const links = document.querySelectorAll("#sidebar a");
-    const button = document.getElementById("toggleButton");
-
-    sidebarCollapsed = !sidebarCollapsed;
-
-    if (sidebarCollapsed) {
-        sidebar.style.width = "80px";
-        sidebar.style.padding = "25px 10px";
-        main.style.marginLeft = "80px";
-        labels.forEach(label => label.style.display = "none");
-
-        links.forEach(link => {
-            link.style.justifyContent = "center";
-            link.style.padding = "14px 5px";
-        });
-
-        button.style.alignSelf = "center";
-        button.setAttribute("aria-label", "Expand sidebar");
-    } else {
-        sidebar.style.width = "240px";
-        sidebar.style.padding = "25px 12px";
-        main.style.marginLeft = "240px";
-        labels.forEach(label => label.style.display = "inline");
-
-        links.forEach(link => {
-            link.style.justifyContent = "flex-start";
-            link.style.padding = "14px 15px";
-        });
-
-        button.style.alignSelf = "flex-end";
-        button.setAttribute("aria-label", "Collapse sidebar");
-    }
-}
-</script>
+<script src="sidebar.js"></script>
 
 </body>
 </html>
